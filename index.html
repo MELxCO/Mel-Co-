@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mel&Co - Agence de Communication Paris (IDF)</title>
+    <meta name="description" content="Agence de communication Mel&Co à Paris/IDF. Stratégie, création, événementiel entreprise et brand content. Boostez votre visibilité." />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+      /* Font Definitions */
+      @font-face {
+        font-family: 'League Spartan';
+        src: url('https://res.cloudinary.com/dm8mis5k2/raw/upload/v1770886183/LeagueSpartan-Bold_tvf2zj.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Comfortaa';
+        src: url('https://res.cloudinary.com/dm8mis5k2/raw/upload/v1768475868/Comfortaa-Bold_uqcuce.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+      
+      @font-face {
+        font-family: 'Comfortaa';
+        src: url('https://res.cloudinary.com/dm8mis5k2/raw/upload/v1768475867/Comfortaa-Regular_l7pgbo.ttf') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Comfortaa';
+        src: url('https://res.cloudinary.com/dm8mis5k2/raw/upload/v1768475868/Comfortaa-Light_ymedoe.ttf') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Biro Script';
+        src: url('https://res.cloudinary.com/dm8mis5k2/raw/upload/v1770886136/Biro_Script_reduced_hlbvyj.otf') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fb97cd;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #ff009f;
+        border-radius: 0;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #fffefb;
+      }
+
+      /* Base Styles */
+      body {
+        font-family: 'Comfortaa', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #6f706f;
+        background-color: #fb97cd;
+        overflow-x: hidden;
+      }
+
+      /* Typography Rules: League Spartan must be UPPERCASE */
+      h1, h2, h3, h4, h5, h6, .font-title {
+        font-family: 'League Spartan', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        line-height: 0.9;
+      }
+
+      .font-accent {
+        font-family: 'Biro Script', cursive;
+        text-transform: none;
+      }
+
+      /* Utilities for Talamus/Opening Line effects */
+      .text-outline {
+        -webkit-text-stroke: 1px #6f706f;
+        color: transparent;
+      }
+      
+      .text-outline-white {
+        -webkit-text-stroke: 1px #fffefb;
+        color: transparent;
+      }
+
+      /* Marquee Animation */
+      @keyframes marquee {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+      .animate-marquee {
+        animation: marquee 20s linear infinite;
+      }
+
+    </style>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              title: ['League Spartan', 'sans-serif'],
+              body: ['Comfortaa', 'sans-serif'],
+              accent: ['Biro Script', 'cursive'],
+            },
+            colors: {
+              brand: {
+                primary: '#ff009f',   // Rose principal (Ligne, CTA)
+                secondary: '#fb97cd', // Rose secondaire (Fond)
+                dark: '#6f706f',      // Gris secondaire (Texte)
+                light: '#fffefb',     // Blanc principal
+              }
+            },
+            animation: {
+              'fade-in': 'fadeIn 1s ease-out forwards',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
