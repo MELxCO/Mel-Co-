@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Button from '../components/Button';
-import { SERVICES, CASE_STUDIES, TESTIMONIALS } from '../constants';
-import { Star } from 'lucide-react';
+import { SERVICES, CASE_STUDIES, TESTIMONIALS, FAQ_ITEMS } from '../constants';
+import { Star, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Home: React.FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [pageHeight, setPageHeight] = useState(6000); // Increased default
+  const [pageHeight, setPageHeight] = useState(6000); 
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Track scroll and page height
@@ -19,8 +19,7 @@ const Home: React.FC = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      // Draw slightly ahead of the scroll (offset + 60% of viewport)
-      const drawPoint = scrollY + (windowHeight * 0.75); // Increased lead slightly
+      const drawPoint = scrollY + (windowHeight * 0.75); 
       setScrollProgress(drawPoint);
     };
 
@@ -28,7 +27,7 @@ const Home: React.FC = () => {
     window.addEventListener('resize', updateDimensions);
     
     // Initial calc
-    setTimeout(updateDimensions, 100); // Small delay to ensure render
+    setTimeout(updateDimensions, 200); 
     handleScroll();
 
     return () => {
@@ -37,8 +36,7 @@ const Home: React.FC = () => {
     };
   }, []);
 
-  // Calculate Path Nodes based on rough section positions
-  // Now using pageHeight to ensure it goes to the very bottom
+  // Updated Path Definition to include FAQ loop
   const pathDefinition = `
     M 50,0 
     L 50,120
@@ -58,13 +56,14 @@ const Home: React.FC = () => {
     /* Loop at Portfolio (~3500px) */
     C 50,3450 40,3450 40,3480
     S 50,3510 50,3550
-    
-    /* Straight line to the very end of the footer */
+    L 50,4500
+
+    /* NEW: Curve for FAQ Section */
+    C 50,4600 70,4700 50,4800
     L 50,${pageHeight}
   `;
 
   // Micro-interaction Anchors
-  // Positioned roughly where the "events" happen on the line
   const anchors = [
     { id: 'start', y: 120, label: 'Départ' },
     { id: 'slalom-1', y: 550, label: 'Agence' },
@@ -72,8 +71,12 @@ const Home: React.FC = () => {
     { id: 'services', y: 1480, label: 'Savoir-faire' },
     { id: 'stats', y: 2900, label: 'Chiffres' },
     { id: 'portfolio', y: 3480, label: 'Portfolio' },
-    { id: 'contact', y: pageHeight - 300, label: 'Contact' }, // Dynamic based on height
+    { id: 'faq', y: 4650, label: 'Questions' },
+    { id: 'contact', y: pageHeight - 300, label: 'Contact' },
   ];
+
+  // FAQ State
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <div ref={containerRef} className="w-full relative bg-brand-secondary overflow-hidden">
@@ -86,7 +89,6 @@ const Home: React.FC = () => {
             preserveAspectRatio="none"
             xmlns="http://www.w3.org/2000/svg"
          >
-            {/* The Active Drawing Line */}
             <path 
               d={pathDefinition}
               fill="none"
@@ -96,7 +98,7 @@ const Home: React.FC = () => {
               strokeLinejoin="round"
               vectorEffect="non-scaling-stroke"
               style={{
-                strokeDasharray: pageHeight * 1.5, // Ensure it covers full length
+                strokeDasharray: pageHeight * 1.5,
                 strokeDashoffset: Math.max(0, (pageHeight * 1.5) - scrollProgress),
                 transition: 'stroke-dashoffset 0.1s linear'
               }}
@@ -112,10 +114,7 @@ const Home: React.FC = () => {
                 className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center transition-all duration-500"
                 style={{ top: `${anchor.y}px` }}
               >
-                {/* Pulse Circle */}
                 <div className={`w-4 h-4 rounded-full border-2 border-brand-primary bg-brand-secondary transition-all duration-500 ${isReached ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}></div>
-                
-                {/* Outer Ring Effect */}
                 <div className={`absolute w-10 h-10 rounded-full border border-brand-primary/40 transition-all duration-700 ${isReached ? 'scale-100 opacity-100 animate-ping' : 'scale-0 opacity-0'}`}></div>
               </div>
             );
@@ -126,39 +125,37 @@ const Home: React.FC = () => {
       <section className="min-h-screen relative flex flex-col items-center justify-center px-4 md:px-12 pt-32 pb-20">
         <div className="relative z-10 w-full max-w-[1920px] mx-auto flex flex-col justify-center">
             
-            {/* Top Label */}
             <div className="mb-12 text-center animate-fade-in relative z-20" style={{animationDelay: '0.2s'}}>
                 <span className="inline-block py-2 px-4 rounded-full border border-brand-dark/30 text-xs font-bold uppercase tracking-[0.2em] text-brand-dark backdrop-blur-sm bg-brand-secondary/80">
                     Paris — Île-de-France
                 </span>
             </div>
 
-            {/* Main Title Stack with Staggering for Slalom */}
+            {/* Main Title Stack - Centered */}
             <div className="flex flex-col w-full relative">
                 
-                {/* AGENCE - Left */}
-                <div className="relative md:pr-[20vw] text-center md:text-right animate-fade-in translate-y-4 opacity-0" style={{animationDelay: '0.3s', animationFillMode: 'forwards'}}>
+                {/* AGENCE */}
+                <div className="relative text-center animate-fade-in translate-y-4 opacity-0" style={{animationDelay: '0.3s', animationFillMode: 'forwards'}}>
                   <h1 className="text-[13vw] md:text-[10vw] leading-[0.85] font-title text-brand-dark tracking-tighter mix-blend-multiply">
                       AGENCE
                   </h1>
                 </div>
                 
-                {/* 'de' - Center */}
+                {/* 'de' */}
                 <div className="flex items-center justify-center my-[-1vw] md:my-[-2vw] relative z-20 animate-fade-in opacity-0" style={{animationDelay: '0.5s', animationFillMode: 'forwards'}}>
                     <div className="relative px-2">
                       <span className="font-accent text-brand-primary text-5xl md:text-8xl -rotate-12 transform origin-center block pt-4 drop-shadow-md">de</span>
                     </div>
                 </div>
 
-                {/* COMMUNICATION - Right */}
-                <div className="relative md:pl-[20vw] text-center md:text-left animate-fade-in translate-y-[-4px] opacity-0" style={{animationDelay: '0.4s', animationFillMode: 'forwards'}}>
+                {/* COMMUNICATION */}
+                <div className="relative text-center animate-fade-in translate-y-[-4px] opacity-0" style={{animationDelay: '0.4s', animationFillMode: 'forwards'}}>
                   <h1 className="text-[13vw] md:text-[10vw] leading-[0.85] font-title text-brand-dark text-outline tracking-tighter mix-blend-multiply">
                       COMMUNICATION
                   </h1>
                 </div>
             </div>
 
-            {/* Subtitle */}
             <div className="mt-24 max-w-2xl mx-auto text-center relative z-20 animate-fade-in opacity-0 px-6" style={{animationDelay: '0.6s', animationFillMode: 'forwards'}}>
                <p className="font-body text-xl md:text-2xl text-brand-dark font-bold leading-relaxed">
                   Nous sculptons l'identité des marques ambitieuses. <br className="hidden md:block" />
@@ -171,7 +168,6 @@ const Home: React.FC = () => {
       {/* --- SERVICES --- */}
       <section id="services" className="relative py-32">
         <div className="max-w-[1920px] mx-auto px-4 md:px-12 mb-20 text-center relative z-10">
-           {/* Title with Anchor Point behind it */}
            <div className="inline-block relative">
               <span className="bg-brand-secondary px-6 py-2 font-accent text-4xl text-brand-dark relative z-20 rounded-full border border-brand-dark/10 shadow-sm">
                 Notre Savoir-Faire
@@ -183,11 +179,10 @@ const Home: React.FC = () => {
           <div key={service.id} className="relative py-12 md:py-24 group">
             <div className="max-w-[1920px] mx-auto w-full grid grid-cols-1 md:grid-cols-2 items-center gap-12 md:gap-0">
               
-              {/* Content Side */}
               <div className={`px-4 md:px-24 flex flex-col justify-center ${index % 2 === 0 ? 'md:order-1 md:text-right md:items-end' : 'md:order-2 md:text-left md:items-start'}`}>
                 <div className="inline-flex items-center gap-4 mb-6">
                    {index % 2 === 0 && <span className="font-title text-6xl text-brand-primary opacity-50">0{index + 1}</span>}
-                   <h3 className="font-title text-4xl md:text-6xl text-brand-dark leading-[0.9]">{service.title}</h3>
+                   <h2 className="font-title text-4xl md:text-6xl text-brand-dark leading-[0.9]">{service.title}</h2>
                    {index % 2 !== 0 && <span className="font-title text-6xl text-brand-primary opacity-50">0{index + 1}</span>}
                 </div>
                 
@@ -206,7 +201,6 @@ const Home: React.FC = () => {
                 </Button>
               </div>
 
-              {/* Image Side */}
               <div className={`px-4 md:px-24 ${index % 2 === 0 ? 'md:order-2' : 'md:order-1'}`}>
                  <div className="relative aspect-video overflow-hidden border-2 border-brand-light shadow-[8px_8px_0px_0px_#ff009f] transition-transform duration-500 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:shadow-[4px_4px_0px_0px_#ff009f] bg-brand-secondary">
                     <img 
@@ -223,7 +217,6 @@ const Home: React.FC = () => {
 
       {/* --- AGENCY NUMBERS --- */}
       <section id="agency" className="bg-brand-primary text-white py-24 relative overflow-hidden">
-         {/* The SVG Line passes through here (white/transparent) */}
          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center relative z-10">
             <div className="group p-8 border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm rounded-lg">
                <span className="block font-title text-7xl mb-2 group-hover:scale-110 transition-transform duration-300">10+</span>
@@ -299,6 +292,33 @@ const Home: React.FC = () => {
                   </div>
                ))}
             </div>
+         </div>
+      </section>
+
+      {/* --- FAQ SECTION (NEW FOR GEO) --- */}
+      <section id="faq" className="py-24 relative z-10">
+         <div className="max-w-3xl mx-auto px-4">
+           <h2 className="font-title text-4xl text-center mb-12 text-brand-dark">Questions Fréquentes</h2>
+           <div className="space-y-4">
+             {FAQ_ITEMS.map((item, index) => (
+               <div key={index} className="border border-brand-primary/30 bg-white/50 backdrop-blur-sm rounded-lg overflow-hidden">
+                 <button 
+                   onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                   className="w-full flex justify-between items-center p-6 text-left font-bold text-brand-dark hover:bg-white transition-colors"
+                 >
+                   <span>{item.question}</span>
+                   {openFaq === index ? <ChevronUp className="text-brand-primary" /> : <ChevronDown className="text-brand-dark/50" />}
+                 </button>
+                 <div 
+                   className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === index ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}
+                 >
+                   <p className="p-6 pt-0 text-brand-dark/80 leading-relaxed">
+                     {item.answer}
+                   </p>
+                 </div>
+               </div>
+             ))}
+           </div>
          </div>
       </section>
 

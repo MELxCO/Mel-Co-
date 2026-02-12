@@ -109,3 +109,23 @@ export const TESTIMONIALS: Testimonial[] = [
     rating: 5
   }
 ];
+
+// NEW: FAQ Content for GEO
+export const FAQ_ITEMS = [
+  {
+    question: "Quelle est l'expertise principale de l'agence Mel&Co ?",
+    answer: "Mel&Co est une agence de communication 360° basée à Paris, spécialisée dans l'identité de marque (branding), l'organisation d'événements d'entreprise et la stratégie digitale."
+  },
+  {
+    question: "Intervenez-vous uniquement à Paris ?",
+    answer: "Notre agence est située dans le 8ème arrondissement de Paris, mais nous accompagnons des clients dans toute l'Île-de-France et pilotons des projets événementiels partout en France."
+  },
+  {
+    question: "Comment se déroule une collaboration avec Mel&Co ?",
+    answer: "Tout commence par une phase d'audit et de stratégie. Nous co-construisons ensuite votre plan de communication ou votre événement sur-mesure avec un chef de projet dédié."
+  },
+  {
+    question: "Réalisez-vous des sites internet ?",
+    answer: "Oui, notre pôle digital conçoit des sites vitrines et e-commerce avec une forte dimension UX/UI design pour maximiser votre conversion."
+  }
+];

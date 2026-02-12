@@ -3,8 +3,76 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mel&Co - Agence de Communication Paris (IDF)</title>
-    <meta name="description" content="Agence de communication Mel&Co à Paris/IDF. Stratégie, création, événementiel entreprise et brand content. Boostez votre visibilité." />
+    
+    <!-- SEO Primaire -->
+    <title>Mel&Co - Agence de Communication Paris (IDF) | Stratégie & Événementiel</title>
+    <meta name="description" content="Agence de communication créative à Paris 8ème. Experts en stratégie de marque, événementiel d'entreprise, branding et création de contenu digital. Devis gratuit." />
+    <meta name="keywords" content="agence communication paris, événementiel entreprise paris, branding idf, stratégie digitale, agence créative paris 8" />
+    <meta name="author" content="Mel&Co" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.melandco.fr/" />
+
+    <!-- Open Graph / Facebook / LinkedIn (Pour le partage social) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.melandco.fr/" />
+    <meta property="og:title" content="Mel&Co - L'Agence qui sculpte votre identité de marque" />
+    <meta property="og:description" content="Basée à Paris, Mel&Co transforme votre communication. Stratégie, Design, Événementiel. Découvrez nos projets." />
+    <meta property="og:image" content="https://res.cloudinary.com/dm8mis5k2/image/upload/v1770885883/Capture_d_e%CC%81cran_2026-02-12_a%CC%80_09.44.20_xubmy6.png" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://www.melandco.fr/" />
+    <meta property="twitter:title" content="Mel&Co - Agence de Communication Paris" />
+    <meta property="twitter:description" content="Agence créative Paris & IDF. Stratégie, Branding, Events." />
+    <meta property="twitter:image" content="https://res.cloudinary.com/dm8mis5k2/image/upload/v1770885883/Capture_d_e%CC%81cran_2026-02-12_a%CC%80_09.44.20_xubmy6.png" />
+
+    <!-- GEO & Local SEO : Données Structurées JSON-LD -->
+    <!-- C'est ce que les IA (ChatGPT, Perplexity) lisent pour comprendre qui vous êtes -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AdvertisingAgency",
+      "name": "Mel&Co",
+      "image": "https://res.cloudinary.com/dm8mis5k2/image/upload/v1770885883/Capture_d_e%CC%81cran_2026-02-12_a%CC%80_09.44.31_yiym4d.png",
+      "@id": "https://www.melandco.fr",
+      "url": "https://www.melandco.fr",
+      "telephone": "+33100000000",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "24 Avenue des Champs-Élysées",
+        "addressLocality": "Paris",
+        "postalCode": "75008",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.8698,
+        "longitude": 2.3075
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://www.instagram.com/melandco",
+        "https://www.linkedin.com/company/melandco"
+      ],
+      "areaServed": {
+        "@type": "City",
+        "name": "Paris"
+      }
+    }
+    </script>
     
     <!-- Tailwind CSS (CDN kept for specific configuration usage) -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -147,8 +215,8 @@
     "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "react/": "https://esm.sh/react@^19.2.4/",
     "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
-    "vite": "https://esm.sh/vite@^7.3.1"
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4"
   }
 }
 </script>

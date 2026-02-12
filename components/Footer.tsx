@@ -8,12 +8,16 @@ const Footer: React.FC = () => {
         
         <div className="text-center md:text-left">
            <h4 className="font-title text-2xl mb-2">MEL&CO PARIS</h4>
-           <p className="text-sm opacity-60">24 Avenue des Champs-Élysées, 75008 Paris</p>
+           {/* Semantic Address for SEO/GPS */}
+           <address className="text-sm opacity-60 not-italic">
+             24 Avenue des Champs-Élysées<br/>
+             75008 Paris, France
+           </address>
         </div>
 
         <div className="flex gap-6">
-           <a href="#" className="hover:text-brand-primary transition-colors"><Instagram /></a>
-           <a href="#" className="hover:text-brand-primary transition-colors"><Linkedin /></a>
+           <a href="#" aria-label="Suivez-nous sur Instagram" className="hover:text-brand-primary transition-colors"><Instagram /></a>
+           <a href="#" aria-label="Suivez-nous sur LinkedIn" className="hover:text-brand-primary transition-colors"><Linkedin /></a>
         </div>
 
         <div className="text-center md:text-right text-xs opacity-50 uppercase tracking-widest">
